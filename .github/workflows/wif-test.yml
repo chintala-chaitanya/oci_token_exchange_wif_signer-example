@@ -29,4 +29,5 @@ jobs:
           OCI_CLIENT_SECRET: ${{ secrets.OCI_CLIENT_SECRET }}
           OCI_RESOURCE_OCID: ${{ secrets.OCI_RESOURCE_OCID }}
         run: |
-          python examples/workload_identity_federation_signer_example.py
+          python workload_identity_federation_signer_example.py
+
