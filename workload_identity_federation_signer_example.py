@@ -67,7 +67,6 @@ def get_jwt():
 # TokenExchangeSigner
 # -----------------------------------------------------------------------------
 signer = oci.auth.signers.TokenExchangeSigner(get_jwt, oci_domain_id, oci_client_id, oci_client_secret)
-print(jwt)
 # -----------------------------------------------------------------------------
 # Example: Use the resource OCID with SecretsClient
 # -----------------------------------------------------------------------------
