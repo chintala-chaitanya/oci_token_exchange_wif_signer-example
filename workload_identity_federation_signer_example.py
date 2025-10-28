@@ -89,5 +89,13 @@ try:
 except Exception as e:
     print(f"Error reading resource {resource_ocid}: {e}", flush=True)
 
+osclient = oci.object_storage.ObjectStorageClient({'region': region}, signer=signer)
+get_namespace_response = osclient.get_namespace()
+print(get_namespace_response.data)
+list_objects_response = osclient.list_objects(
+ namespace_name="id3kvohtwgjy",
+ bucket_name="CRL-Bucket")
+print (list_objects_response.data)
+
 #    if i < 9:
 #       time.sleep(3700)  # 61 minutes
