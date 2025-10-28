@@ -1,14 +1,16 @@
-name: OCI python WIF Tester
+name: Test OCI WIF Signer
 
 on:
   workflow_dispatch:
 
 permissions:
+  id-token: write
   contents: read
 
 jobs:
-  run-test:
+  test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -18,16 +20,17 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install OCI SDK
-        run: pip install oci
-
-      - name: Run WIF test using Confidential App
-        env:
-          OCI_REGION: ${{ secrets.OCI_REGION }}
-          OCI_DOMAIN_ID: ${{ secrets.OCI_DOMAIN_ID }}
-          OCI_CLIENT_ID: ${{ secrets.OCI_CLIENT_ID }}
-          OCI_CLIENT_SECRET: ${{ secrets.OCI_CLIENT_SECRET }}
-          OCI_RESOURCE_OCID: ${{ secrets.OCI_RESOURCE_OCID }}
+      - name: Install dependencies
         run: |
-          python workload_identity_federation_signer_example.py
+          python -m pip install --upgrade pip
+          pip install oci requests
 
+      - name: Run OCI WIF Signer Example
+        env:
+          region: ${{ secrets.region }}
+          resource_ocid: ${{ secrets.resource_ocid }}
+          oci_domain_id: ${{ secrets.oci_domain_id }}
+          oci_client_id: ${{ secrets.oci_client_id }}
+          oci_client_secret: ${{ secrets.oci_client_secret }}
+        run: |
+          python examples/workload_identity_federation_signer_example.py
