@@ -33,4 +33,5 @@ jobs:
           oci_client_id: ${{ secrets.oci_client_id }}
           oci_client_secret: ${{ secrets.oci_client_secret }}
         run: |
-          python examples/workload_identity_federation_signer_example.py
+          python workload_identity_federation_signer_example.py
+
