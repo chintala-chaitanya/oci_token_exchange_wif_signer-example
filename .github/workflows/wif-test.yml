@@ -1,0 +1,32 @@
+name: OCI python WIF Tester
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install OCI SDK
+        run: pip install oci
+
+      - name: Run WIF test using Confidential App
+        env:
+          OCI_REGION: ${{ secrets.OCI_REGION }}
+          OCI_DOMAIN_ID: ${{ secrets.OCI_DOMAIN_ID }}
+          OCI_CLIENT_ID: ${{ secrets.OCI_CLIENT_ID }}
+          OCI_CLIENT_SECRET: ${{ secrets.OCI_CLIENT_SECRET }}
+          OCI_RESOURCE_OCID: ${{ secrets.OCI_RESOURCE_OCID }}
+        run: |
+          python examples/workload_identity_federation_signer_example.py
