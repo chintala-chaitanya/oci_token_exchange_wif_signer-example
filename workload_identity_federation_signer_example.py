@@ -76,15 +76,15 @@ secrets_client = oci.secrets.SecretsClient(
 # Example: Read a secret multiple times to demonstrate token refresh
 # -----------------------------------------------------------------------------
 #for i in range(10):
-    try:
-        response = secrets_client.get_secret_bundle(resource_ocid)
-        base64_content = response.data.secret_bundle_content.content
+try:
+    response = secrets_client.get_secret_bundle(resource_ocid)
+    base64_content = response.data.secret_bundle_content.content
 
-        decoded_content = base64.b64decode(base64_content).decode("utf-8")
-        print(f"Resource value (decoded): {decoded_content}", flush=True)
+    decoded_content = base64.b64decode(base64_content).decode("utf-8")
+    print(f"Resource value (decoded): {decoded_content}", flush=True)
 
-    except Exception as e:
-        print(f"Error reading resource {resource_ocid}: {e}", flush=True)
+except Exception as e:
+    print(f"Error reading resource {resource_ocid}: {e}", flush=True)
 
 #    if i < 9:
 #       time.sleep(3700)  # 61 minutes
