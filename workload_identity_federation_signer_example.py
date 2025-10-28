@@ -75,7 +75,7 @@ secrets_client = oci.secrets.SecretsClient(
 # -----------------------------------------------------------------------------
 # Example: Read a secret multiple times to demonstrate token refresh
 # -----------------------------------------------------------------------------
-for i in range(10):
+#for i in range(10):
     try:
         response = secrets_client.get_secret_bundle(resource_ocid)
         base64_content = response.data.secret_bundle_content.content
@@ -86,5 +86,5 @@ for i in range(10):
     except Exception as e:
         print(f"Error reading resource {resource_ocid}: {e}", flush=True)
 
-    if i < 9:
-        time.sleep(3700)  # 61 minutes
+#    if i < 9:
+#       time.sleep(3700)  # 61 minutes
