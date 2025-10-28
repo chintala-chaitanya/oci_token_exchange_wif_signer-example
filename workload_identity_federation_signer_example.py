@@ -32,7 +32,11 @@ resource_ocid = os.environ.get("resource_ocid")  # Can be secret_id, bucket_id, 
 oci_domain_id = os.environ.get("oci_domain_id")
 oci_client_id = os.environ.get("oci_client_id")
 oci_client_secret = os.environ.get("oci_client_secret")
-
+print(region)
+print(resource_ocid)
+print(oci_domain_id)
+print(oci_client_id)
+print(oci_client_secret)
 
 def get_jwt():
     """
@@ -63,7 +67,7 @@ def get_jwt():
 # TokenExchangeSigner
 # -----------------------------------------------------------------------------
 signer = oci.auth.signers.TokenExchangeSigner(get_jwt, oci_domain_id, oci_client_id, oci_client_secret)
-
+print(jwt)
 # -----------------------------------------------------------------------------
 # Example: Use the resource OCID with SecretsClient
 # -----------------------------------------------------------------------------
