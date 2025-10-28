@@ -22,16 +22,16 @@ import requests
 #   depending on your use case and the service client you initialize.
 # -----------------------------------------------------------------------------
 
-if len(sys.argv) != 6:
-    raise RuntimeError(
-        "Usage: python workload_identity_federation_signer_example.py <region> <resource_ocid> <oci_domain_id> <oci_client_id> <oci_client_secret>"
-    )
+#if len(sys.argv) != 6:
+#    raise RuntimeError(
+#       "Usage: python workload_identity_federation_signer_example.py <region> <resource_ocid> <oci_domain_id> <oci_client_id> <oci_client_secret>"
+#   )
 
-region = sys.argv[1]
-resource_ocid = sys.argv[2]  # Can be secret_id, bucket_id, etc.
-oci_domain_id = sys.argv[3]
-oci_client_id = sys.argv[4]
-oci_client_secret = sys.argv[5]
+region = os.environ.get("region")
+resource_ocid = os.environ.get("resource_ocid")  # Can be secret_id, bucket_id, etc.
+oci_domain_id = os.environ.get("oci_domain_id")
+oci_client_id = os.environ.get("oci_client_id")
+oci_client_secret = os.environ.get("oci_client_secret")
 
 
 def get_jwt():
